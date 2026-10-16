@@ -1,0 +1,24 @@
+/* Matinee: a small screen under the file list */
+.mat-host { position: relative; width: 100%; aspect-ratio: 4 / 3; background: #000; overflow: hidden; }
+/* Obsidian stretches sidebar children; keep the screen exactly its own size */
+.workspace-split .workspace-tabs .mat-host.mat-host, .workspace-split .mat-host.mat-host { flex: 0 0 auto; height: auto; min-height: 0; max-height: none; order: 99; }
+.workspace-split .mat-host.mat-host.is-top { order: -1; }
+.workspace-split .mat-host.mat-host.is-wide { aspect-ratio: 16 / 9; }
+.workspace-split .mat-host.mat-host.mat-hidden { display: none; }
+.mat-video { position: absolute; inset: 0; width: 100%; height: 100%; display: block; object-fit: cover; background: #000; }
+.mat-host.is-fit .mat-video { object-fit: contain; }
+.mat-host.is-mono .mat-video { filter: grayscale(1) contrast(1.06); }
+
+.mat-msg { position: absolute; inset: 0; display: none; align-items: center; justify-content: center; padding: 12px; text-align: center; color: rgba(255, 255, 255, .6); font-size: var(--font-ui-smaller); }
+.mat-msg.is-on { display: flex; }
+
+.mat-top, .mat-bar { position: absolute; left: 0; right: 0; display: flex; align-items: center; gap: 6px; padding: 6px 8px; opacity: 0; transition: opacity .2s ease; }
+.mat-top { top: 0; justify-content: space-between; background: linear-gradient(to bottom, rgba(0, 0, 0, .7), rgba(0, 0, 0, 0)); }
+.mat-bar { bottom: 0; background: linear-gradient(to top, rgba(0, 0, 0, .75), rgba(0, 0, 0, 0)); }
+.mat-host:hover .mat-top, .mat-host:hover .mat-bar, .mat-host:focus-within .mat-top, .mat-host:focus-within .mat-bar { opacity: 1; }
+.mat-title { min-width: 0; color: #fff; font-size: var(--font-ui-smaller); font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.mat-year { flex: none; color: rgba(255, 255, 255, .7); font-size: var(--font-ui-smaller); font-variant-numeric: tabular-nums; }
+.mat-gap { flex: 1; }
+.mat-host .mat-btn { color: #fff; padding: 4px; }
+.mat-host .mat-btn:hover { background: rgba(255, 255, 255, .15); color: #fff; }
+@media (prefers-reduced-motion: reduce) { .mat-top, .mat-bar { transition: none; } }

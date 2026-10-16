@@ -1,0 +1,11 @@
+{
+  "id": "matinee",
+  "name": "Matinee",
+  "version": "1.0.0",
+  "minAppVersion": "1.5.0",
+  "description": "Plays random public-domain black-and-white films from the Internet Archive in a small screen under your file list.",
+  "author": "AshOtis",
+  "authorUrl": "https://github.com/AshOtis",
+  "fundingUrl": "https://buymeacoffee.com/ashotis",
+  "isDesktopOnly": true
+}
