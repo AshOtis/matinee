@@ -22,3 +22,7 @@
 .mat-host .mat-btn { color: #fff; padding: 4px; }
 .mat-host .mat-btn:hover { background: rgba(255, 255, 255, .15); color: #fff; }
 @media (prefers-reduced-motion: reduce) { .mat-top, .mat-bar { transition: none; } }
+
+/* Blend with theme: the film goes slightly see-through and the black backing goes, so the theme shows through */
+.workspace-split .mat-host.mat-host.is-blend { background: transparent; }
+.mat-host.is-blend .mat-video { background: transparent; opacity: var(--mat-blend, .92); }

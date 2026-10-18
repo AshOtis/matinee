@@ -12,6 +12,7 @@ A small black-and-white film screen in your Obsidian sidebar. Matinee plays rand
 - **Out of the way:** the title, year and controls only appear when you hover. Controls: pause, another film, sound on or off, and open the film's page on archive.org.
 - **Top or bottom:** sits at the bottom of the left sidebar above the vault name, or at the top.
 - **Shape and fit:** classic 4:3 or wide 16:9, filling the screen or showing the whole picture.
+- **Blend with theme:** makes the film slightly see-through (92% by default, adjustable) so your theme shows through and the screen blends into the sidebar.
 - **Quiet by default:** starts muted, with its own volume setting.
 - **Polite:** pauses when you close the sidebar or minimise Obsidian, and doesn't repeat any of your last 40 films.
 

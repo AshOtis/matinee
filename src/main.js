@@ -13,7 +13,7 @@ const SHELVES = {
 const DEFAULTS = {
   enabled: true,
   shelves: { noir: true, scifi: true, silent: true, features: true, shorts: true, cartoons: false },
-  position: 'bottom', mono: true, randomStart: true, muted: true, volume: 0.5, aspect: '4:3', fill: 'cover', recent: []
+  position: 'bottom', mono: true, randomStart: true, muted: true, volume: 0.5, aspect: '4:3', fill: 'cover', blend: false, blendAmount: 0.92, recent: []
 };
 // smaller web versions first: plenty for a sidebar and kinder to your connection
 const FORMATS = ['512Kb MPEG4', 'MPEG4', 'h.264', 'h.264 IA', 'Ogg Video'];
@@ -75,6 +75,8 @@ module.exports = class Matinee extends Plugin {
     h.toggleClass('is-wide', s.aspect === '16:9');
     h.toggleClass('is-fit', s.fill === 'contain');
     h.toggleClass('mat-hidden', !s.enabled);
+    h.toggleClass('is-blend', s.blend);
+    h.style.setProperty('--mat-blend', String(s.blendAmount));
     this.paintButtons();
   }
 
@@ -205,6 +207,12 @@ class MatineeSettings extends PluginSettingTab {
     new Setting(el).setName('Shape').addDropdown(d => d.addOptions({ '4:3': 'Classic 4:3', '16:9': 'Wide 16:9' }).setValue(s.aspect).onChange(v => { s.aspect = v; changed(); }));
     new Setting(el).setName('Fit').setDesc('Fill crops the edges so the screen has no black bars.')
       .addDropdown(d => d.addOptions({ cover: 'Fill the screen', contain: 'Show the whole picture' }).setValue(s.fill).onChange(v => { s.fill = v; changed(); }));
+    new Setting(el).setName('Blend with theme').setDesc('Makes the film slightly see-through, so your theme shows through and the screen sits in the sidebar instead of on top of it.')
+      .addToggle(t => t.setValue(s.blend).onChange(v => { s.blend = v; changed(); this.display(); }));
+    if (s.blend) {
+      new Setting(el).setName('Film strength').setDesc('How solid the film looks while blending. Lower lets more of the theme through.')
+        .addSlider(sl => sl.setLimits(0.4, 1, 0.05).setValue(s.blendAmount).setDynamicTooltip().onChange(v => { s.blendAmount = v; changed(); }));
+    }
     new Setting(el).setName('Start part-way through').setDesc('Drop into a random scene instead of the opening credits.')
       .addToggle(t => t.setValue(s.randomStart).onChange(v => { s.randomStart = v; p.save(); }));
     new Setting(el).setName('Sound').setHeading();
